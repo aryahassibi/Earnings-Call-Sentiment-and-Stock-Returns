@@ -32,8 +32,8 @@ Developed as an independent research project at **TU Dortmund University**, the 
 PyTorch · Hugging Face🤗 Transformers · spaCy · pandas · pyarrow · scikit-learn · statsmodels · matplotlib · seaborn
 ```
 **Models**
-• [FinBERT (ProsusAI/finbert)](https://huggingface.co/ProsusAI/finbert) – financial sentiment classification (positive / negative / neutral).  
-• [Emotion DistilRoBERTa (j-hartmann/emotion-english-distilroberta-base)](https://huggingface.co/j-hartmann/emotion-english-distilroberta-base) – 7-way emotion classification (anger, disgust, fear, joy, neutral, sadness, surprise).
+- [FinBERT (ProsusAI/finbert)](https://huggingface.co/ProsusAI/finbert) – financial sentiment classification (positive / negative / neutral).  
+- [Emotion DistilRoBERTa (j-hartmann/emotion-english-distilroberta-base)](https://huggingface.co/j-hartmann/emotion-english-distilroberta-base) – 7-way emotion classification (anger, disgust, fear, joy, neutral, sadness, surprise).
 
 ## Results Summary
 Regression analyses were conducted over 62k matched earnings-call transcripts and stock-return observations to evaluate how linguistic tone relates to short-horizon market reactions.  
