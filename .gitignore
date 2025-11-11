@@ -1,6 +1,10 @@
 # macOS metadata files
 **/.DS_Store
 
+# Handle database files
+data/*
+!data/sample/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
