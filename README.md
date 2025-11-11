@@ -4,7 +4,39 @@ Transformer-based NLP pipeline analyzing 77k earnings-call transcripts to link c
 ## Overview
 This project builds an end-to-end NLP pipeline that analyzes **77k corporate earnings-call transcripts (2010–2025)** to quantify tone and emotion using transformer-based models (**FinBERT + emotion classifier**).  
 Developed as an independent research project at **TU Dortmund University**, the system aggregates token-level outputs into interpretable call-level sentiment features and links them with short-term **post-call stock returns** through regression analysis.
+Results show that tone variables are individually **highly significant** yet they only explain a **small share of return variance**, which is consistent with market efficiency.
 
+## Results Summary
+Regression analyses were conducted over 62k matched earnings-call transcripts and stock-return observations to evaluate how linguistic tone relates to short-horizon market reactions.  
+Three models were tested:
+- **FinBERT sentiment**, 
+- **Emotion-based tone**, 
+- **Combined model** integrating both feature sets.
+
+### Key Insights
+**Directionally consistent effects**  
+  Positive tone and emotional valence are associated with **higher post-call returns**, while negative sentiment and emotions (e.g., sadness, fear) correlate with **lower returns**.
+
+**Short-term concentration** 
+  Predictive strength peaks at the **1-day horizon** and decays over 3–5 days, indicating that markets **rapidly incorporate tone information** following earnings calls.
+
+**Complementary signals**  
+  The **combined model outperforms** FinBERT or emotion features alone, suggesting that emotional nuance adds incremental explanatory power to finance-specific sentiment.
+
+**Statistical strength, modest economic impact**  
+  Although coefficients are **highly significant** (t-stats >15 across tone variables), overall explanatory power remains **small (R² ≤ 0.013)**. This is consistent with prior literature on financial-text analytics.
+
+**Interpretation**  
+  Results confirm that **corporate communication tone carries short-lived yet measurable predictive information**, reinforcing the role of NLP-derived sentiment and emotion features as **auxiliary signals** in quantitative trading and event-driven models.
+
+### Research Scope & Implications
+This analysis isolates the linguistic component of market reactions, focusing on *tone–return causality* rather than price levels or the basics.
+
+Future work could extend this by:
+- Incorporating **firm and sector fixed effects** to control for baseline performance.  
+- Modeling **interaction terms** between tone and earnings surprises.  
+- Testing **temporal dynamics** (rolling regressions, expanding windows) for stability.  
+- Exploring **multi-modal features** (audio tone, speaker sentiment, Q&A sections).
 
 ## Environment setup
 ```bash
