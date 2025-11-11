@@ -4,7 +4,33 @@ Transformer-based NLP pipeline analyzing 77k earnings-call transcripts to link c
 ## Overview
 This project builds an end-to-end NLP pipeline that analyzes **77k corporate earnings-call transcripts (2010–2025)** to quantify tone and emotion using transformer-based models (**FinBERT + emotion classifier**).  
 Developed as an independent research project at **TU Dortmund University**, the system aggregates token-level outputs into interpretable call-level sentiment features and links them with short-term **post-call stock returns** through regression analysis.
-Results show that tone variables are individually **highly significant** yet they only explain a **small share of return variance**, which is consistent with market efficiency.
+**Results** show that tone variables are individually **highly significant** yet they only explain a **small share of return variance**, which is consistent with market efficiency. More details below.
+
+## Structure
+```
+┌────────────────────────┐        ┌────────────────────────────┐        ┌───────────────────────────┐
+│ 1                      │        │ 2                          │        │ 3                         │
+│ Data Preprocessing     │ ─────► │ Transformer Inference      │ ─────► │ Feature Engineering       │
+│                        │        │                            │        │                           │
+│ • Clean + normalize    │        │ • FinBERT & Emotion models │        │ • Aggregate token probs   │
+│ • Sentence splitting   │        │ • Batched inference (GPU)  │        │ • Weighted means, entropy │
+│ • Chunk to 512 tokens  │        │ • Cache intermediate reps  │        │ • Dispersion, extremes    │
+└────────────────────────┘        └────────────────────────────┘        └───────────────────────────┘
+                                                                                           │
+                                                                                           ▼
+┌─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐       ┌────────────────────────────┐        ┌────────────────────────┐
+│ 6                          │       │ 5                          │        │ 4                      │
+│ Visualization & Analysis   │ ◄──── │ Regression Modeling        │ ◄───── │ Market Data Alignment  │
+│                            │       │                            │        │                        │
+│ • Correlations, deciles    │       │ • OLS, statsmodels         │        │ • Merge tone + prices  │
+│ • Coeff. trends, heatmaps  │       │ • Evaluate R², RMSE        │        │ • Compute 1d/3d/5d     │
+│ • Interpret market signal  │       │ • Combined FinBERT+Emotion │        │   forward returns      │
+└ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─┘       └────────────────────────────┘        └────────────────────────┘
+```
+**Frameworks**
+```
+PyTorch · Hugging Face🤗 Transformers · spaCy · pandas · pyarrow · scikit-learn · statsmodels · matplotlib · seaborn
+```
 
 ## Results Summary
 Regression analyses were conducted over 62k matched earnings-call transcripts and stock-return observations to evaluate how linguistic tone relates to short-horizon market reactions.  
